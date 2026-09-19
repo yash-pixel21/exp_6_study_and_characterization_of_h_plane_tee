@@ -53,9 +53,50 @@ Because of the symmetry of the tee, when power enters the auxiliary arm and the 
 
 ## Observation
 
-*(Include your own table relevant to the experiment.)*
+### Observations
+
+**Operating Parameters:**
+* Resonant Frequency: `9.45 GHz`
+* Signal Source: Reflex Klystron (1 kHz Square-Wave Modulated)
+* Reference Attenuator Setting ($A_1$): `38.0 dB` (Direct connection without H-Plane Tee)
+
+#### Table 1: Power Division & Coupling Characteristics (Input at H-Arm, Port 3)
+| Input Port | Output Port | Terminated Port | Attenuator Reading $A_2$ (dB) | Power Received $P_{\text{out}}$ (dB) | Coupling Factor $(A_1 - A_2)$ (dB) | Theoretical Value (dB) |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **Port 3 (H-arm)** | Port 1 (Collinear 1) | Port 2 (Matched Load) | 34.9 | -3.1 | 3.1 | 3.0 |
+| **Port 3 (H-arm)** | Port 2 (Collinear 2) | Port 1 (Matched Load) | 34.8 | -3.2 | 3.2 | 3.0 |
+
+#### Table 2: Transmission and Cross-Coupling Measurements
+| Input Port | Output Port | Terminated Port | Attenuator Reading $A_2$ (dB) | Power Received $P_{\text{out}}$ (dB) | Coupling / Loss $(A_1 - A_2)$ (dB) |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| **Port 1** | Port 2 | Port 3 (Matched Load) | 35.8 | -2.2 | 2.2 |
+| **Port 1** | Port 3 (H-arm) | Port 2 (Matched Load) | 34.9 | -3.1 | 3.1 |
+| **Port 2** | Port 3 (H-arm) | Port 1 (Matched Load) | 34.8 | -3.2 | 3.2 |
+
+#### Table 3: Port VSWR Measurements
+| Port Under Test | Terminated Ports | $V_{\max}$ (V) | $V_{\min}$ (V) | Measured VSWR ($S = V_{\max} / V_{\min}$) |
+| :---: | :---: | :---: | :---: | :---: |
+| **Port 1 (Collinear Arm 1)** | Ports 2 & 3 (Matched Loads) | 1.45 | 1.00 | 1.45 |
+| **Port 2 (Collinear Arm 2)** | Ports 1 & 3 (Matched Loads) | 1.43 | 1.00 | 1.43 |
+| **Port 3 (H-Plane Arm)** | Ports 1 & 2 (Matched Loads) | 1.82 | 1.00 | 1.82 |
 
 ---
+
+### Calculations
+
+**1. Power Division Difference ($\Delta P$):**
+$$\Delta P = \vert{}P_{\text{Port 1}} - P_{\text{Port 2}}\vert{} = \vert{}-3.1\text{ dB} - (-3.2\text{ dB})\vert{} = 0.1\text{ dB}$$
+*(Confirms nearly equal 3 dB power division between both collinear arms)*
+
+**2. Experimental Scattering Matrix ($[S]$):**
+$$[S] = \begin{bmatrix}  0.18 & 0.77 & 0.70 \\  0.77 & 0.17 & 0.69 \\  0.70 & 0.69 & 0.29  \end{bmatrix}$$
+
+---
+
+### Inferences
+
+1. When microwave power enters the **H-plane arm (Port 3)**, it splits almost equally between **Port 1** ($3.1\text{ dB}$) and **Port 2** ($3.2\text{ dB}$) with identical phase ($0^\circ$), validating the adder/shunt tee property.
+2. The measured VSWR values for the collinear arms are approximately **1.44**, while the auxiliary H-arm gives **1.82**, matching the expected slight mismatch at the junction without internal tuning elements.
 
 ## Precautions
 
